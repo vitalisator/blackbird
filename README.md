@@ -62,7 +62,12 @@ Note: on Bitfinex, your money has to be available on the _Margin_ account.
 | <a href="https://www.okcoin.com" target="_blank">OKCoin</a> | ✓ |  | ✓ |their API now offers short selling: <a href="https://www.okcoin.com/about/rest_api.do" target="_blank">link here</a> |
 | <a href="https://www.bitstamp.net" target="_blank">Bitstamp</a> | ✓ |  | ✓ | |
 | <a href="https://gemini.com" target="_blank">Gemini</a> | ✓ |  | ✓ | |
-| <a href="https://www.kraken.com" target="_blank">Kraken</a> | ✓ |  | | Validation in progress |
+| <a href="https://www.kraken.com" target="_blank">Kraken</a> | ✓ |  | | Validation in progress | 
+| <a href="https://exmo.com" target="_blank">EXMO</a> | ✓ |  | | New exchange from PR <a href="https://github.com/butor/blackbird/pull/336" target="_blank">#336</a> |
+
+
+
+
 
 #### Potential Exchanges
 
@@ -73,6 +78,7 @@ Note: on Bitfinex, your money has to be available on the _Margin_ account.
 | <a href="https://btc-e.com" target="_blank">BTC-e</a> | ✓ |  |  |
 | <a href="https://www.itbit.com" target="_blank">itBit</a> | ✓ |  |  |
 | <a href="https://www.quadrigacx.com" target="_blank">QuadrigaCX</a> | ✓ |  |  |
+| <a href="https://cex.io/" target="_blank">CEX.IO</a> | ✓ | ✓ |  |
 
 If `DemoMode=true`, all the exchanges are shown in the log file.
 
@@ -188,6 +194,28 @@ Alternatively, if you already have the existing source tree use:
 
   ```
   docker-compose up
+  ```
+
+#### Mac OS X
+
+1. Install [Homebrew](https://brew.sh/)
+
+2. Run the following commands:
+
+  ```
+  xcode-select --install
+  brew install cmake openssl jansson curl sqlite3 sendemail
+  mkdir blackbird
+  cd blackbird
+  git clone --recursive  git://github.com/butor/blackbird.git .
+  cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -B./build -H. -DCMAKE_BUILD_TYPE=Release
+  cmake --build ./build -- install
+  ```
+
+3. Run the software, by typing:
+
+  ```
+  ./blackbird
   ```
 
 #### Understanding and debugging the software
