@@ -85,6 +85,9 @@ std::string sendLongOrder(Parameters& params, std::string direction, double quan
   json_object_set_new(options.get(), "price", json_real(price));
 
   unique_json root { authRequest(params, ("/v2/" + direction), options.get()) };
+    auto dump = json_dumps(root.get(), 0);
+    *params.logFile << "<QuadrigaCX> Debug, Message: " << dump << std::endl;
+    free(dump);
   std::string orderId = json_string_value(json_object_get(root.get(), "id"));
   if (orderId.empty()) {
     auto dump = json_dumps(root.get(), 0);

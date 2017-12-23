@@ -50,11 +50,12 @@ bool checkEntry(Bitcoin* btcLong, Bitcoin* btcShort, Result& res, Parameters& pa
   // We update the max and min spread if necessary
   res.maxSpread[longId][shortId] = std::max(res.spreadIn, res.maxSpread[longId][shortId]);
   res.minSpread[longId][shortId] = std::min(res.spreadIn, res.minSpread[longId][shortId]);
+  res.avgSpread[longId][shortId] = (res.maxSpread[longId][shortId] + res.minSpread[longId][shortId]) / 2;
 
   if (params.verbose) {
     params.logFile->precision(2);
     *params.logFile << "   " << btcLong->getExchName() << "/" << btcShort->getExchName() << ":\t" << percToStr(res.spreadIn);
-    *params.logFile << " [target " << percToStr(params.spreadEntry) << ", min " << percToStr(res.minSpread[longId][shortId]) << ", max " << percToStr(res.maxSpread[longId][shortId]) << "]";
+    *params.logFile << " [target " << percToStr(params.spreadEntry) << ", avg " << percToStr(res.avgSpread[longId][shortId]) << ", min " << percToStr(res.minSpread[longId][shortId]) << ", max " << percToStr(res.maxSpread[longId][shortId]) << "]";
     // The short-term volatility is computed and
     // displayed. No other action with it for
     // the moment.
