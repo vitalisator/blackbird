@@ -20,6 +20,7 @@ struct Parameters {
 
   CURL* curl;
   double spreadEntry;
+  bool relativeSpreadEntry;
   double spreadTarget;
   unsigned maxLength;
   double priceDeltaLim;

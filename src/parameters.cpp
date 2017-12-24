@@ -72,6 +72,7 @@ Parameters::Parameters(std::string fileName) {
   }
 
   spreadEntry = getDouble(getParameter("SpreadEntry", configFile));
+  relativeSpreadEntry = getBool(getParameter("RelativeSpreadEntry", configFile));
   spreadTarget = getDouble(getParameter("SpreadTarget", configFile));
   maxLength = getUnsigned(getParameter("MaxLength", configFile));
   priceDeltaLim = getDouble(getParameter("PriceDeltaLimit", configFile));
